@@ -8,17 +8,28 @@
     <div class="grid-2">
       <label class="field">
         <span class="field__label">First Name*</span>
-        <input class="field__control" type="text" autocomplete="given-name" formControlName="firstName" />
-        @if (form.controls.firstName.touched && form.controls.firstName.invalid) {
-          <span class="field__error">First name is required.</span>
+        <input
+          class="field__control"
+          type="text"
+          autocomplete="given-name"
+          formControlName="firstName"
+        />
+        @if (form.controls.firstName.touched && form.controls.firstName.invalid)
+        {
+        <span class="field__error">First name is required.</span>
         }
       </label>
 
       <label class="field">
         <span class="field__label">Last Name*</span>
-        <input class="field__control" type="text" autocomplete="family-name" formControlName="lastName" />
+        <input
+          class="field__control"
+          type="text"
+          autocomplete="family-name"
+          formControlName="lastName"
+        />
         @if (form.controls.lastName.touched && form.controls.lastName.invalid) {
-          <span class="field__error">Last name is required.</span>
+        <span class="field__error">Last name is required.</span>
         }
       </label>
     </div>
@@ -33,7 +44,7 @@
         formControlName="email"
       />
       @if (form.controls.email.touched && form.controls.email.invalid) {
-        <span class="field__error">Please enter a valid email.</span>
+      <span class="field__error">Please enter a valid email.</span>
       }
     </label>
 
@@ -50,14 +61,16 @@
           class="field__toggle"
           type="button"
           (click)="togglePassword()"
-          [attr.aria-label]="passwordVisible() ? 'Hide password' : 'Show password'"
+          [attr.aria-label]="
+            passwordVisible() ? 'Hide password' : 'Show password'
+          "
           [attr.aria-pressed]="passwordVisible()"
         >
-          {{ passwordVisible() ? 'Hide' : 'Show' }}
+          {{ passwordVisible() ? "Hide" : "Show" }}
         </button>
       </div>
       @if (form.controls.password.touched && form.controls.password.invalid) {
-        <span class="field__error">Password must be at least 6 characters.</span>
+      <span class="field__error">Password must be at least 6 characters.</span>
       }
     </label>
 
@@ -67,10 +80,13 @@
 
     <div class="muted">
       By clicking “Sign up”, you agree to Barren
-      <a class="link" href="#" (click)="$event.preventDefault()">Terms &amp; Conditions</a>
+      <a class="link" href="#" (click)="$event.preventDefault()"
+        >Terms &amp; Conditions</a
+      >
       and have read the
-      <a class="link" href="#" (click)="$event.preventDefault()">Privacy Policy</a>.
+      <a class="link" href="#" (click)="$event.preventDefault()"
+        >Privacy Policy</a
+      >.
     </div>
   </form>
 </app-auth-layout>
-
