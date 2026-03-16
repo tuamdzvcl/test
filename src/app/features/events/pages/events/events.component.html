@@ -1,0 +1,65 @@
+<app-shell>
+  <div class="topbar__left">
+    <h1 class="topbar__title">Dashboard</h1>
+  </div>
+  <section class="events-header card">
+    <div style="display: flex; flex-direction: column; gap: 10px">
+      <div class="events-header__left">
+        <h2 class="events-header__title">Events (1)</h2>
+      </div>
+      <div class="events-search__control">
+        <span class="events-search__icon">🔍</span>
+        <input
+          class="events-search__input"
+          type="text"
+          placeholder="Search by event name, status"
+        />
+      </div>
+    </div>
+
+    <div class="events-header__right">
+      <div class="events-header__filters">
+        <button class="btn btn--tab btn--tab-active" type="button">
+          All Event (1)
+        </button>
+        <button class="btn btn--tab" type="button">Online Event (0)</button>
+        <button class="btn btn--tab" type="button">Venue Event (1)</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="event-item card">
+    <div class="event-item__media">
+      <div class="event-item__thumbnail"></div>
+    </div>
+    <div class="event-item__body">
+      <div class="event-item__title">
+        Tutorial on Canvas Painting for Beginners
+      </div>
+      <div class="event-item__meta-row">
+        <div class="event-meta">
+          <div class="event-meta__label">Status</div>
+          <div class="event-meta__value event-meta__value--green">Publish</div>
+        </div>
+
+        <div class="event-meta">
+          <div class="event-meta__label">Starts on</div>
+          <div class="event-meta__value">30 Jun, 2022 10:00 AM</div>
+        </div>
+
+        <div class="event-meta">
+          <div class="event-meta__label">Ticket</div>
+          <div class="event-meta__value">250</div>
+        </div>
+
+        <div class="event-meta">
+          <div class="event-meta__label">Tickets sold</div>
+          <div class="event-meta__value">20</div>
+        </div>
+      </div>
+    </div>
+    <div class="event-item__actions">
+      <button class="btn btn--icon" type="button">⋮</button>
+    </div>
+  </section>
+</app-shell>

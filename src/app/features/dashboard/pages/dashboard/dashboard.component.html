@@ -1,0 +1,78 @@
+<app-shell>
+  <main>
+    <div class="topbar__left">
+      <h1 class="topbar__title">Dashboard</h1>
+    </div>
+
+    <section class="card profile">
+      <div style="display: flex; gap: 10px">
+        <div class="profile__avatar">JD</div>
+        <div class="profile__info">
+          <div class="profile__name">John Doe</div>
+          <div class="profile__org">My Organisation</div>
+        </div>
+      </div>
+      <button class="btn btn--ghost btn--small" type="button">
+        Add Organisation
+      </button>
+    </section>
+
+    <section class="summary">
+      <div class="summary__row">
+        <div class="summary__date">1st April, 2022 - 30th April, 2022</div>
+      </div>
+
+      <div class="summary__cards">
+        <article class="stat stat--purple">
+          <div class="stat__label">REVENUE (AUD)</div>
+          <div class="stat__value">$550.00</div>
+          <div class="stat__meta">0.00% From Previous Period</div>
+        </article>
+
+        <article class="stat stat--red">
+          <div class="stat__label">ORDERS</div>
+          <div class="stat__value">2</div>
+          <div class="stat__meta">0.00% From Previous Period</div>
+        </article>
+
+        <article class="stat stat--blue">
+          <div class="stat__label">PAGE VIEWS</div>
+          <div class="stat__value">30</div>
+          <div class="stat__meta">0.00% From Previous Period</div>
+        </article>
+
+        <article class="stat stat--green">
+          <div class="stat__label">TICKET SALES</div>
+          <div class="stat__value">3</div>
+          <div class="stat__meta">0.00% From Previous Period</div>
+        </article>
+      </div>
+    </section>
+
+    <section class="chart card">
+      <header class="chart__header">
+        <select class="chart__title">
+          <option value="Revenue">Revenue</option>
+          <option value="Revenue">Revenue</option>
+          <option value="Revenue">Revenue</option>
+          <option value="Revenue">Revenue</option>
+          <option value="Revenue">Revenue</option>
+        </select>
+        <div class="chart__tabs">
+          <button class="chip chip--active" type="button">Monthly</button>
+          <button class="chip" type="button">Weekly</button>
+          <button class="chip" type="button">Daily</button>
+        </div>
+      </header>
+      <div class="chart__body">
+        <div class="chart__placeholder">
+          <div class="chart__line"></div>
+          <div class="chart__dot chart__dot--1"></div>
+          <div class="chart__dot chart__dot--2"></div>
+          <div class="chart__dot chart__dot--3"></div>
+          <div class="chart__dot chart__dot--4"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+</app-shell>

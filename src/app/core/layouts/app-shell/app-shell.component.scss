@@ -1,0 +1,172 @@
+.shell {
+  height: 100dvh;
+  display: grid;
+  grid-template-columns: 250px minmax(0, 1fr);
+  background: #f3f4f6;
+  color: #111827;
+}
+
+.sidebar {
+  background: #1f2933;
+  color: #e5e7eb;
+  display: flex;
+  flex-direction: column;
+  padding: 16px 12px;
+}
+
+.sidebar__brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+ 
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  
+}
+
+.brand__mark {
+  width: 30px;
+  height: 30px;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  background: #6cc04a;
+  color: #ffffff;
+  font-weight: 800;
+}
+
+.brand__name {
+  font-size: 18px;
+  font-weight: 800;
+}
+
+.sidebar__nav {
+  padding-top: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 7px 10px;
+  border-radius: 6px;
+  font-size: 13px;
+  color: #d1d5db;
+  text-align: left;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+}
+
+.nav-item:hover {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.nav-item--active {
+  background: #6cc04a;
+  color: #ffffff;
+}
+
+.nav-item__icon {
+  width: 20px;
+  text-align: center;
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.topbar {
+  height: 56px;
+  padding: 0 40px;
+  border-bottom: 1px solid #e5e7eb;
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.topbar__title {
+  font-size: 20px;
+  font-weight: 700;
+  margin: 0;
+}
+
+.topbar__right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.btn {
+  border-radius: 2px;
+  border: 1px solid transparent;
+  padding: 6px 14px;
+  font-size: 13px;
+  cursor: pointer;
+  background: transparent;
+}
+
+.btn--ghost {
+  border-color: transparent;
+  color: #374151;
+}
+
+.btn--ghost:hover {
+  background: #f3f4f6;
+}
+
+.btn--primary {
+  background: #6cc04a;
+  color: #ffffff;
+}
+
+.btn--primary:hover {
+  background: #62b542;
+}
+
+.avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 999px;
+  background: #e5e7eb;
+  border: 0;
+  display: grid;
+  place-items: center;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.content {
+  padding: 16px 20px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  overflow: auto;
+}
+
+.footer {
+  padding: 8px 20px 10px;
+  font-size: 11px;
+  color: #9ca3af;
+}
+
+@media (max-width: 768px) {
+  .shell {
+    grid-template-columns: 70px minmax(0, 1fr);
+  }
+
+  .sidebar__brand .brand__name {
+    display: none;
+  }
+
+  .nav-item__label {
+    display: none;
+  }
+}
+
