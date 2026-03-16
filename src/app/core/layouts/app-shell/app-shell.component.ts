@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 
 @Component({
@@ -10,5 +10,14 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
   styleUrl: './app-shell.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class AppShellComponent {}
+export class AppShellComponent {
+
+  sidebarOpen = signal(true)
+
+  toggleSidebar() {
+    this.sidebarOpen.update(v => !v);
+  }
+
+  
+}
 

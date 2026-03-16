@@ -1,7 +1,7 @@
 <app-auth-layout
   topText="New to Barren?"
   topLinkText="Sign up"
-  [topLinkTo]="['/auth/signup']"
+  [topLinkTo]="['auth/signup']"
   title="Sign in to Barren"
 >
   <form class="form" [formGroup]="form" (ngSubmit)="submit()">
@@ -16,14 +16,16 @@
         formControlName="email"
       />
       @if (form.controls.email.touched && form.controls.email.invalid) {
-        <span class="field__error">Please enter a valid email.</span>
+      <span class="field__error">Please enter a valid email.</span>
       }
     </label>
 
     <label class="field">
       <div class="field__row">
         <span class="field__label">Password*</span>
-        <a class="link link--muted" href="#" (click)="$event.preventDefault()">Forgot Password?</a>
+        <a class="link link--muted" href="#" (click)="$event.preventDefault()"
+          >Forgot Password?</a
+        >
       </div>
       <input
         class="field__control"
@@ -33,7 +35,7 @@
         formControlName="password"
       />
       @if (form.controls.password.touched && form.controls.password.invalid) {
-        <span class="field__error">Password must be at least 6 characters.</span>
+      <span class="field__error">Password must be at least 6 characters.</span>
       }
     </label>
 
@@ -44,8 +46,5 @@
     <div class="divider">
       <span>or</span>
     </div>
-
-    
   </form>
 </app-auth-layout>
-

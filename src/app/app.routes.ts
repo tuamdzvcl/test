@@ -1,24 +1,18 @@
 import { Routes } from '@angular/router';
+import { AuthLayoutComponent } from './features/auth/ui/auth-layout/auth-layout.component';
+import { LoginComponent } from './features/auth/pages/login/login.component';
+import { SignupComponent } from './features/auth/pages/signup/signup.component';
+import { AppShellComponent } from './core/layouts/app-shell/app-shell.component';
 
 export const routes: Routes = [
-  { path: '', pathMatch: 'full', redirectTo: 'auth/login' },
-  {
-    path: 'auth',
-    loadChildren: () =>
-      import('./features/auth/auth.routes').then((m) => m.AUTH_ROUTES)
-  },
-  {
-    path: 'events',
-    loadComponent: () =>
-      import('./features/events/pages/events/events.component').then(
-        (m) => m.EventsComponent
-      )
-  },
-  {
-    path: 'dashboard',
-    loadComponent: () =>
-      import('./features/dashboard/pages/dashboard/dashboard.component').then(
-        (m) => m.DashboardComponent
-      )
-  }
+  {path:'header',component: Headers},
+  
+  {path:'auth',component: AuthLayoutComponent,
+  children:[
+    {path:'login',component:LoginComponent},
+    {path:'signup',component:SignupComponent},
+    {path:'shell',component:AppShellComponent}
+  ]
+}
+  
 ];
