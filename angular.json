@@ -32,6 +32,7 @@
               }
             ],
             "styles": [
+              "@angular/material/prebuilt-themes/azure-blue.css",
               "src/styles.scss"
             ],
             "scripts": []
@@ -91,6 +92,10 @@
               }
             ],
             "styles": [
+              "@angular/material/prebuilt-themes/azure-blue.css",
+              "node_modules/@primeuix/themes/aura/theme.css",
+              "node_modules/primeicons/primeicons.css",
+              "node_modules/quill/dist/quill.snow.css",
               "src/styles.scss"
             ],
             "scripts": []

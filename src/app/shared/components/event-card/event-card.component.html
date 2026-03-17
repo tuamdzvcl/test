@@ -1,0 +1,28 @@
+<div class="event-card">
+  <!-- IMAGE -->
+  <div class="card-image">
+    <img [src]="eventmodel.image" />
+
+    <button class="bookmark">
+      <i class="icon"><i class="fa-solid fa-bookmark"></i></i>
+    </button>
+  </div>
+
+  <!-- CONTENT -->
+  <div class="card-content">
+    <h3 class="title">
+      {{ eventmodel.title }}
+    </h3>
+
+    <div class="price">AUD $100.00*</div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="card-footer">
+    <div class="date">
+      <i class="fa-regular fa-calendar-days"></i> 15 Apr • Fri, 3.45 PM
+    </div>
+
+    <div class="time-left"><i class="fa-regular fa-clock"></i> 1h</div>
+  </div>
+</div>
