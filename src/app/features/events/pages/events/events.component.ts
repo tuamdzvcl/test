@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { AppShellComponent } from '../../../../core/layouts/app-shell/app-shell.component';
+import { AppShellComponent } from '../../../../layouts/app-shell/app-shell.component';
 
 @Component({
   selector: 'app-events',

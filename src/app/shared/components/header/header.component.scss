@@ -1,40 +1,4 @@
-// header{
-//     box-shadow: 0 4px 4px #aaaaaa;
-//     position: relative;
-//     font-size: 10px;
-// }
-// .header{
-//     width: 100%;
-//     max-width: 1280px;
-//     display: flex;
-//     justify-content: space-between;
-//     margin: 0 auto;
-//     padding: 10px 20px;
-    
-// }
-// .brand__name{
-//     display: flex;
-//     gap: 10px;
-//     font-size: 1.5rem;
-//     align-items: center;
-// }
-// .brand__name .brand__mark{
-//     width: 30px;
-//     height: 30px;
-//     color: #FFFF;
-//     background-color: rgb(127, 194, 127);
-//     display: flex;
-//     justify-content: center;
-//     align-items: center;
-//     border-radius: 100%;
-//     font-size: 1.5rem;
-//     font-weight: 900;
-// }
-// .header-right{
-//     display: flex;
-//     justify-content: space-between;
-//     align-items: center;
-// }
+
 
 .header {
     height: 70px;
@@ -71,6 +35,7 @@
 .nav {
     display: flex;
     gap: 40px;
+    font-size: 1.6rem;
 }
 
 .nav a {

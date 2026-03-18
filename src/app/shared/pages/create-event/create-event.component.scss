@@ -1,0 +1,116 @@
+.content {
+    max-width: 1000px;
+    width: 100%;
+    background-color: #fff;
+}
+.card {
+    border: 1px solid #ddd;
+    background: #fff;
+}
+
+.wrapper {
+    max-width: 75rem; // 800px
+    margin: 0 auto;
+}
+
+.form-card {
+    padding: 2rem;
+}
+
+.title {
+    font-size: 1.6rem;
+    margin-bottom: 0.2rem;
+}.border{
+    width: 100%;
+margin-bottom: 1.5rem;
+    border: 1px solid rgb(165, 160, 160);
+}
+.field {
+    margin-bottom: 2rem;
+    label {
+        display: block;
+        font-size: 1.3rem;
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+        line-height: 3.2rem;
+    }
+    .desc {
+        display: block;
+        font-size: 1.1rem;
+        color: #6b7280;
+        margin-bottom: 0.8rem;
+    }
+}
+
+
+.banner {
+    position: relative;
+    height: 18rem;
+    background: linear-gradient(135deg, #2b5876, #4e4376);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;
+}
+.p-inputtext,
+.p-dropdown,
+.p-calendar input {
+    border-radius: 0 !important; 
+    border: 2px solid #d1d5db; 
+}
+.overlay {
+    font-size: 6rem;
+    color: white;
+    opacity: 0.7;
+}
+
+.btn-upload {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+}
+
+
+.speet{
+    margin: 30px 0px;
+}
+.custom-steps .p-steps-item .p-menuitem-link {
+    font-size: 1.2rem; 
+    padding: 1rem 1.5rem;
+    
+}
+
+.custom-steps .p-steps-number {
+    width: 2.4rem;
+    height: 2.4rem;
+    font-size: 1.2rem;
+    border-radius: 0; 
+}
+
+
+.custom-steps .p-steps-item.p-highlight .p-steps-number {
+    background: #2563eb;
+    color: #fff;
+    border: none;
+}
+.custom-steps .p-steps-item .p-steps-number {
+    border: 2px solid #d1d5db;
+    color: #6b7280;
+}
+.custom-steps .p-steps-item:before {
+    border-top: 2px solid #e5e7eb;
+}
+.btnSave{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0;
+    padding: 10px;
+}
+.btnSave button{
+    padding: 12px 50px;
+    background-color: rgb(31, 171, 31);
+    border: 0;
+    color: #fff;
+    border-radius: 2px;
+}
