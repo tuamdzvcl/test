@@ -1,8 +1,26 @@
 .events-grid {
+    
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 20px;
 }
+.page
+{
+
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+.page .btn-loadmode{
+    padding: 10px;
+    border-radius: 8px;
+    border: 0px;
+    color: #fff;
+    background-color: #3dbb3d;
+}
+
 
 @media(max-width:1024px) {
     .events-grid {

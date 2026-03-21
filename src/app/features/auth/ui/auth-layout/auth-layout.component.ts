@@ -1,6 +1,8 @@
+import { BaseApiService } from './../../../../core/services/BaseApiService ';
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { ApiResponse } from '../../../../core/model/api-response.model';
 
 @Component({
   selector: 'app-auth-layout',
@@ -16,5 +18,24 @@ export class AuthLayoutComponent {
   @Input({ required: true }) topLinkTo!: string | any[];
 
   @Input({ required: true }) title!: string;
+  
+  constructor(
+    private readonly baseApiService: BaseApiService
+  ){}
+
+  logingoogle(){
+    this.baseApiService.get<string >('auth/google-login-url')
+  .subscribe({
+        next: (res) => {
+          window.location.href = res; 
+        },
+        error: (err) => {
+          alert(err.message)
+          console.error('Login Google error', err);
+        }
+      });
+}
+
+
 }
 

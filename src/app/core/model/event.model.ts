@@ -1,7 +1,13 @@
 export interface EventModel {
-  id: number
-  title: string
-  image: string
-  date: string
-  location: string
+  EventID: number
+  Title: string
+  Description:string
+  PosterUrl: string
+  Status: string
+  Location: string
+  StartDate:Date
+  EndDate:Date
+  SaleStartDate :Date
+  SaleEndDate:Date
+  UserID:number
 }

@@ -2,6 +2,8 @@ import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthLayoutComponent } from '../../ui/auth-layout/auth-layout.component';
+import { AuthService } from '../../AuthService ';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -16,7 +18,10 @@ export class LoginComponent {
 
   readonly form;
 
-  constructor(private readonly fb: FormBuilder) {
+  constructor(private readonly fb: FormBuilder,
+      private readonly authService: AuthService,
+      private readonly router: Router
+    ) {
     this.form = this.fb.nonNullable.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]]
@@ -28,10 +33,24 @@ export class LoginComponent {
       this.form.markAllAsTouched();
       return;
     }
+    this.isSubmitting.set(true);
 
-    this.isSubmitting.set(false);
-   console.log(this.form.getRawValue());
-   console.log("thành công rồi nhé mày");
+    const data = this.form.getRawValue();
+
+    this.authService.login(data).subscribe({
+      next: (res) => {
+        localStorage.setItem('user', JSON.stringify(res.User));
+        this.isSubmitting.set(false);
+        this.router.navigate([''])     
+      },
+      error: (err) => {
+        this.isSubmitting.set(false);
+        console.error(err);
+
+        alert(err.message || 'Login thất bại');
+      }
+    });
   }
+  
 }
 

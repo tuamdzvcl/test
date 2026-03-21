@@ -13,5 +13,6 @@ import { UserDropdownComponent } from '../../../../shared/components/user-dropdo
   styleUrl: './events-page.component.scss'
 })
 export class EventsPageComponent {
-
+  
 }
+

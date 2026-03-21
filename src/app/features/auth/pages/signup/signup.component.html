@@ -66,7 +66,10 @@
           "
           [attr.aria-pressed]="passwordVisible()"
         >
-          {{ passwordVisible() ? "Hide" : "Show" }}
+          <i
+            class="fa"
+            [ngClass]="passwordVisible() ? 'fa-eye-slash' : 'fa-eye'"
+          ></i>
         </button>
       </div>
       @if (form.controls.password.touched && form.controls.password.invalid) {

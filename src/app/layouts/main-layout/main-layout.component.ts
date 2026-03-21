@@ -11,5 +11,15 @@ import { HeaderComponent } from '../../shared/components/header/header.component
   styleUrl: './main-layout.component.scss'
 })
 export class MainLayoutComponent {
+ngOnInit(): void {
+  const params = new URLSearchParams(window.location.search);
+  const token = params.get('token');
 
+  if (token) {
+    localStorage.setItem('token', token);
+    console.log(params)
+    // Xóa token khỏi URL
+    window.history.replaceState({}, document.title, '/');
+  }
+}
 }

@@ -1,63 +1,43 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core'
-import { Observable, of } from 'rxjs'
+import { Observable, map, of } from 'rxjs'
 import { EventModel } from '../model/event.model'
+import { PageResult } from '../model/api-page-response.model';
+import { BaseApiService } from './BaseApiService ';
 
 @Injectable({
   providedIn: 'root'
 })
-export class EventService {
+export class EventService extends BaseApiService {
 
-  getEvents(): Observable<EventModel[]> {
-    return of([
-      {
-        id: 1,
-        title: 'Music Festival',
-        image: 'http://localhost:4200/cat.jpg',
-        date: '20 May 2026',
-        location: 'Hanoi'
-      },
-      {
-        id: 2,
-        title: 'Art Workshop',
-        image: 'http://localhost:4200/cat.jpg',
-        date: '22 May 2026',
-        location: 'Da Nang'
-      },
-      {
-        id: 3,
-        title: 'Dance Competition',
-        image: 'http://localhost:4200/cat.jpg',
-        date: '25 May 2026',
-        location: 'HCM City'
-      },
-      {
-        id: 4,
-        title: 'Dance Competition',
-        image: 'http://localhost:4200/cat.jpg',
-        date: '25 May 2026',
-        location: 'HCM City'
-      },
-      {
-        id: 5,
-        title: 'Dance Competition',
-        image: 'http://localhost:4200/cat.jpg',
-        date: '25 May 2026',
-        location: 'HCM City'
-      },
-      {
-        id: 5,
-        title: 'Dance Competition',
-        image: 'http://localhost:4200/cat.jpg',
-        date: '25 May 2026',
-        location: 'HCM City'
-      }
-      ,{
-        id: 6,
-        title: 'Dance Competition',
-        image: 'http://localhost:4200/cat.jpg',
-        date: '25 May 2026',
-        location: 'HCM City'
-      }
-    ])
+  constructor(
+    http : HttpClient
+  )
+  {
+    super(http);
   }
+
+  GetEvents(pageIndex:number,pageSize: number,key:string){
+    const params :any = {
+      pageIndex:pageIndex,
+      pageSize:pageSize
+    };
+    if(key){
+      params.key = key;
+    }
+    return this.getpage<EventModel>('event/page',{params}).pipe(
+      map((res: PageResult<EventModel>)=>{
+        return {
+          items: res.Items,
+          pageIndex: res.PageIndex,
+          pageSize: res.PageSize,
+          totalRecords: res.TotalRecords,
+          totalPages:res.TotalPages
+        }
+      })  
+    )
+  }
+  
+
+ 
 }

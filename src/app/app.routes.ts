@@ -11,6 +11,7 @@ import { EventsGridComponent } from './features/events/components/events-grid/ev
 import { UserDropdownComponent } from './shared/components/user-dropdown/user-dropdown.component';
 import { CreateEventComponent } from './shared/pages/create-event/create-event.component';
 import { MainLayoutComponent } from './layouts/main-layout/main-layout.component';
+import { LoginSuccessComponent } from './features/auth/pages/login-success/login-success.component';
 
 export const routes: Routes = [
   {path:'header',component: HeaderComponent},
@@ -35,6 +36,10 @@ export const routes: Routes = [
     
   ]
 },
+{
+    path: 'login-success',
+    component: LoginSuccessComponent
+  },
 {
   path:'admin',
   children:[

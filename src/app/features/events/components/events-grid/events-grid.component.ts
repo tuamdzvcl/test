@@ -13,14 +13,44 @@ import { EventCardComponent } from '../../../../shared/components/event-card/eve
   styleUrl: './events-grid.component.scss'
 })
 export class EventsGridComponent {
-events: EventModel[] = []
-
+events: EventModel[] = [];
+pageIndex :number = 1;
+pageSize : number = 2
+key:string ='';
+isLoading : boolean= false
+hasMore :boolean = true
   constructor(private eventService: EventService) {}
 
   ngOnInit(): void {
-    this.eventService.getEvents().subscribe(data => {
-      this.events=data
-      console.log(data)
-    })
+    this.loadEvents();
+  }
+  loadEvents(){
+    if(this.isLoading || !this.hasMore) return
+    this.isLoading=true;
+
+    this.eventService.GetEvents(this.pageIndex,this.pageSize,this.key)
+    .subscribe({
+      next: (res) => {
+          console.log("DATA:", res);
+        this.events = [...this.events, ...res.items];
+
+        if (res.items.length < this.pageSize) {
+         this.hasMore = false;
+          }
+        },
+        error: (err) => {
+          console.error("ERROR:", err);
+        },
+        complete: () => {
+          this.isLoading = false;
+        }
+      });
+  }
+
+  loadMore() {
+    this.pageIndex++;
+    this.loadEvents();
   }
 }
+  
+

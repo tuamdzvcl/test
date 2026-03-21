@@ -1,7 +1,11 @@
+import { AuthData } from '../../../../core/model/authData .model';
+import { ApiResponse } from '../../../../core/model/api-response.model';
+import { AuthService } from './../../AuthService ';
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthLayoutComponent } from '../../ui/auth-layout/auth-layout.component';
+import { Route, Router } from '@angular/router';
 
 @Component({
   selector: 'app-signup',
@@ -17,12 +21,16 @@ export class SignupComponent {
 
   readonly form;
 
-  constructor(private readonly fb: FormBuilder) {
+  constructor(private readonly fb: FormBuilder,
+    private  readonly authservice: AuthService,
+    private readonly router : Router) {
     this.form = this.fb.nonNullable.group({
       firstName: ['', [Validators.required]],
       lastName: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(6)]]
+      password: ['', [Validators.required, Validators.minLength(6)]],
+      username:['string']
+      
     });
   }
 
@@ -37,11 +45,35 @@ export class SignupComponent {
     }
 
     this.isSubmitting.set(true);
-    setTimeout(() => {
-      this.isSubmitting.set(false);
-      // eslint-disable-next-line no-console
-      console.log('Signup payload', this.form.getRawValue());
-    }, 650);
+    
+    const data = this.form.getRawValue()
+    const payload = {
+    Username: data.username,
+    FirstName: data.firstName,
+    LastName: data.lastName,
+    Email: data.email,
+    password: data.password
+  };
+
+    this.authservice.register(payload).subscribe(
+      {
+        next(res){
+          console.log("đăng kí thành công ")
+          console.log(res.ApiResponse)
+          alert(res.ApiResponse)
+
+        },
+        error:(err) =>{
+
+          this.isSubmitting.set(false);
+          console.log(err);
+          alert(err.message || 'đăng kí thấy bại')
+
+        }
+        
+
+      }
+    )
   }
 }
 
