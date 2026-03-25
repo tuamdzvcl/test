@@ -1,8 +1,9 @@
 export interface UserResponse{
-       Email :string,
-   Username :string,
-   LastName :string
-   FirstName :string
-
-   RoleName :Array<string>
+    Id: string
+    Email :string,
+    Username :string,
+    LastName :string
+    FirstName :string
+    RoleName :Array<string>
+    AvataUrl :string
 }

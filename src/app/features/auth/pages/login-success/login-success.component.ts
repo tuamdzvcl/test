@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { TokenService } from '../../../../core/services/token.service';
-import { AuthService } from '../../AuthService ';
+import { AuthService } from '../../auth.service';
 
 @Component({
   selector: 'app-login-success',

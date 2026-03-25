@@ -8,10 +8,7 @@
     background: #fff;
 }
 
-.wrapper {
-    max-width: 75rem; // 800px
-    margin: 0 auto;
-}
+
 
 .form-card {
     padding: 2rem;
@@ -71,9 +68,7 @@ margin-bottom: 1.5rem;
 }
 
 
-.speet{
-    margin: 30px 0px;
-}
+
 .custom-steps .p-steps-item .p-menuitem-link {
     font-size: 1.2rem; 
     padding: 1rem 1.5rem;
@@ -99,18 +94,4 @@ margin-bottom: 1.5rem;
 }
 .custom-steps .p-steps-item:before {
     border-top: 2px solid #e5e7eb;
-}
-.btnSave{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 20px 0;
-    padding: 10px;
-}
-.btnSave button{
-    padding: 12px 50px;
-    background-color: rgb(31, 171, 31);
-    border: 0;
-    color: #fff;
-    border-radius: 2px;
 }

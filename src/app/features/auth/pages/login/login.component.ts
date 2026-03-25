@@ -2,8 +2,8 @@ import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthLayoutComponent } from '../../ui/auth-layout/auth-layout.component';
-import { AuthService } from '../../AuthService ';
-import { Router } from '@angular/router';
+import { AuthService } from '../../auth.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -11,20 +11,22 @@ import { Router } from '@angular/router';
   imports: [CommonModule, ReactiveFormsModule, AuthLayoutComponent],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LoginComponent {
   readonly isSubmitting = signal(false);
 
   readonly form;
 
-  constructor(private readonly fb: FormBuilder,
-      private readonly authService: AuthService,
-      private readonly router: Router
-    ) {
+  constructor(
+    private readonly fb: FormBuilder,
+    private readonly authService: AuthService,
+    private readonly router: Router,
+    private readonly route: ActivatedRoute
+  ) {
     this.form = this.fb.nonNullable.group({
       email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(6)]]
+      password: ['', [Validators.required, Validators.minLength(6)]],
     });
   }
 
@@ -41,16 +43,16 @@ export class LoginComponent {
       next: (res) => {
         localStorage.setItem('user', JSON.stringify(res.User));
         this.isSubmitting.set(false);
-        this.router.navigate([''])     
+        const returnUrl =
+          this.route.snapshot.queryParamMap.get('returnUrl') || '/';
+        this.router.navigateByUrl(returnUrl);
       },
       error: (err) => {
         this.isSubmitting.set(false);
         console.error(err);
 
         alert(err.message || 'Login thất bại');
-      }
+      },
     });
   }
-  
 }
-

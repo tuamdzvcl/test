@@ -15,7 +15,7 @@ import { EventCardComponent } from '../../../../shared/components/event-card/eve
 export class EventsGridComponent {
 events: EventModel[] = [];
 pageIndex :number = 1;
-pageSize : number = 2
+pageSize : number = 10
 key:string ='';
 isLoading : boolean= false
 hasMore :boolean = true
@@ -48,6 +48,7 @@ hasMore :boolean = true
   }
 
   loadMore() {
+    console.log("vào rồi nhé")
     this.pageIndex++;
     this.loadEvents();
   }

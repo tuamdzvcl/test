@@ -9,5 +9,7 @@ export interface EventModel {
   EndDate:Date
   SaleStartDate :Date
   SaleEndDate:Date
-  UserID:number
+  UserID:number,
+  CatetoryName:string
+  
 }

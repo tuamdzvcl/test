@@ -1,111 +1,94 @@
-<div class="card flex text-3xl justify-center mt-2">
-  <p-breadcrumb [model]="item" />
-</div>
-<div class="wrapper">
-  <!-- Steps -->
-  <div class="speet">
-    <p-steps
-      [model]="steps"
-      [(activeIndex)]="activeIndex"
-      class="w-full my-5 custom-steps text-2xl"
-    ></p-steps>
+<div class="card form-card">
+  <h2 class="title">
+    <span><i class="fa-solid fa-circle-exclamation"></i></span> Chi tiết
+  </h2>
+  <div class="border"></div>
+
+  <!-- Event Name -->
+  <div class="field">
+    <label>Hãy đặt tên cho sự kiện của bạn *</label>
+    <small class="desc">
+      Xem tên sự kiện của bạn hiển thị như thế nào trên trang sự kiện và danh
+      sách.
+    </small>
+
+    <input pInputText class="w-full" placeholder="Nhập tên sự kiện tại đây" />
   </div>
 
-  <!-- Card -->
-  <div class="card form-card">
-    <h2 class="title">
-      <span><i class="fa-solid fa-circle-exclamation"></i></span> Chi tiết
-    </h2>
-    <div class="border"></div>
+  <!-- Category -->
+  <div class="field">
+    <label>Hãy chọn một danh mục cho sự kiện của bạn *</label>
+    <small class="desc">
+      Việc lựa chọn danh mục phù hợp giúp tăng khả năng hiển thị sự kiện.
+    </small>
 
-    <!-- Event Name -->
-    <div class="field">
-      <label>Hãy đặt tên cho sự kiện của bạn *</label>
-      <small class="desc">
-        Xem tên sự kiện của bạn hiển thị như thế nào trên trang sự kiện và danh
-        sách.
-      </small>
+    <p-dropdown
+      [options]="categories"
+      placeholder="Chọn danh mục"
+      class="w-full"
+    ></p-dropdown>
+  </div>
 
-      <input pInputText class="w-full" placeholder="Nhập tên sự kiện tại đây" />
-    </div>
+  <!-- Date -->
+  <div class="field">
+    <label>Sự kiện của bạn diễn ra khi nào? *</label>
+    <small class="desc"> Hãy cho mọi người biết ngày diễn ra sự kiện. </small>
 
-    <!-- Category -->
-    <div class="field">
-      <label>Hãy chọn một danh mục cho sự kiện của bạn *</label>
-      <small class="desc">
-        Việc lựa chọn danh mục phù hợp giúp tăng khả năng hiển thị sự kiện.
-      </small>
-
-      <p-dropdown
-        [options]="categories"
-        placeholder="Chọn danh mục"
-        class="w-full"
-      ></p-dropdown>
-    </div>
-
-    <!-- Date -->
-    <div class="field">
-      <label>Sự kiện của bạn diễn ra khi nào? *</label>
-      <small class="desc"> Hãy cho mọi người biết ngày diễn ra sự kiện. </small>
-
-      <div class="grid">
-        <div class="col-6">
-          <label>Ngày diễn ra</label>
-          <p-calendar placeholder="MM/DD/YYYY" styleClass="w-full"></p-calendar>
-        </div>
-
-        <div class="col-3">
-          <label>Thời gian</label>
-          <p-calendar timeOnly="true" styleClass="w-full"></p-calendar>
-        </div>
-
-        <div class="col-3">
-          <label>Khoảng thời gian</label>
-          <p-dropdown
-            [options]="durations"
-            styleClass="w-full"
-            placeholder="1 giờ"
-          ></p-dropdown>
-        </div>
-      </div>
-    </div>
-
-    <!-- Banner -->
-    <div class="field">
-      <small class="desc"
-        >Tải lên những hình ảnh đầy màu sắc và sống động làm banner cho sự kiện
-        của bạn! Xem cách những hình ảnh đẹp mắt giúp trang chi tiết sự kiện của
-        bạn nổi bật hơn
-      </small>
-
-      <div class="banner">
-        <p-toast />
-        <div class="flex flex-wrap gap-6 items-center justify-between">
-          <p-fileupload
-            #fu
-            mode="basic"
-            chooseLabel="Choose"
-            chooseIcon="pi pi-upload"
-            name="demo[]"
-            url="https://www.primefaces.org/cdn/api/upload.php"
-            accept="image/*"
-            maxFileSize="1000000"
-            (onUpload)="onUpload($event)"
-          />
-        </div>
+    <div class="grid">
+      <div class="col-6">
+        <label>Ngày diễn ra</label>
+        <p-calendar placeholder="MM/DD/YYYY" styleClass="w-full"></p-calendar>
       </div>
 
-      <!-- Description -->
-      <div class="field m-2">
-        <small class="desc">Vui lòng mô tả sự kiện của bạn</small>
-        <p-editor [(ngModel)]="text" [style]="{ height: '320px' }" />
+      <div class="col-3">
+        <label>Thời gian</label>
+        <p-calendar timeOnly="true" styleClass="w-full"></p-calendar>
       </div>
-      <div class="field m-2">
-        <small class="desc">Vui lòng mô tả sự kiện của bạn</small>
-        <p-editor [(ngModel)]="text" [style]="{ height: '320px' }" />
+
+      <div class="col-3">
+        <label>Khoảng thời gian</label>
+        <p-dropdown
+          [options]="durations"
+          styleClass="w-full"
+          placeholder="1 giờ"
+        ></p-dropdown>
       </div>
     </div>
   </div>
-</div>
-<div class="btnSave">
+
+  <!-- Banner -->
+  <div class="field">
+    <small class="desc"
+      >Tải lên những hình ảnh đầy màu sắc và sống động làm banner cho sự kiện
+      của bạn! Xem cách những hình ảnh đẹp mắt giúp trang chi tiết sự kiện của
+      bạn nổi bật hơn
+    </small>
+
+    <div class="banner">
+      <p-toast />
+      <div class="flex flex-wrap gap-6 items-center justify-between">
+        <p-fileupload
+          #fu
+          mode="basic"
+          chooseLabel="Choose"
+          chooseIcon="pi pi-upload"
+          name="demo[]"
+          url="https://www.primefaces.org/cdn/api/upload.php"
+          accept="image/*"
+          maxFileSize="1000000"
+          (onUpload)="onUpload($event)"
+        />
+      </div>
+    </div>
+
+    <!-- Description -->
+    <div class="field m-2">
+      <small class="desc">Vui lòng mô tả sự kiện của bạn</small>
+      <p-editor [(ngModel)]="text" [style]="{ height: '320px' }" />
+    </div>
+    <div class="field m-2">
+      <label class="desc">Nhập địa điểm tổ chức sự kiện</label>
+      <input pInputText class="w-full" placeholder="Nhập địa điểm tại đây" />
+    </div>
+  </div>
 </div>

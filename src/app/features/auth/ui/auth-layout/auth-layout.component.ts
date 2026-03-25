@@ -1,4 +1,4 @@
-import { BaseApiService } from './../../../../core/services/BaseApiService ';
+import { BaseApiService } from '../../../../core/services/base-api.service';
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { RouterLink } from '@angular/router';

@@ -2,15 +2,16 @@ import { Router, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { Component, HostListener } from '@angular/core';
 import { DashboardComponent } from '../../../features/dashboard/pages/dashboard/dashboard.component';
-import { AuthService } from '../../../features/auth/AuthService ';
+import { AuthService } from '../../../features/auth/auth.service';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-user-dropdown',
   standalone: true,
   imports: [CommonModule,
-  DashboardComponent,RouterLink],
+  DashboardComponent,RouterLink ],
   templateUrl: './user-dropdown.component.html',
-  styleUrl: './user-dropdown.component.scss'
+  styleUrl: './user-dropdown.component.scss',
 })
 export class UserDropdownComponent {
  isOpen = false;

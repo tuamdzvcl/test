@@ -1,6 +1,6 @@
-import { AuthData } from '../../../../core/model/authData .model';
+import { AuthData } from '../../../../core/model/auth-data.model';
 import { ApiResponse } from '../../../../core/model/api-response.model';
-import { AuthService } from './../../AuthService ';
+import { AuthService } from '../../auth.service';
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
@@ -13,7 +13,7 @@ import { Route, Router } from '@angular/router';
   imports: [CommonModule, ReactiveFormsModule, AuthLayoutComponent],
   templateUrl: './signup.component.html',
   styleUrl: './signup.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SignupComponent {
   readonly isSubmitting = signal(false);
@@ -21,16 +21,17 @@ export class SignupComponent {
 
   readonly form;
 
-  constructor(private readonly fb: FormBuilder,
-    private  readonly authservice: AuthService,
-    private readonly router : Router) {
+  constructor(
+    private readonly fb: FormBuilder,
+    private readonly authservice: AuthService,
+    private readonly router: Router
+  ) {
     this.form = this.fb.nonNullable.group({
       firstName: ['', [Validators.required]],
       lastName: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
-      username:['string']
-      
+      username: ['string'],
     });
   }
 
@@ -45,35 +46,37 @@ export class SignupComponent {
     }
 
     this.isSubmitting.set(true);
-    
-    const data = this.form.getRawValue()
+    const data = this.form.getRawValue();
     const payload = {
-    Username: data.username,
-    FirstName: data.firstName,
-    LastName: data.lastName,
-    Email: data.email,
-    password: data.password
-  };
+      Username: data.username.trim(),
+      FirstName: data.firstName.trim(),
+      LastName: data.lastName.trim(),
+      Email: data.email.trim(),
+      password: data.password.trim(),
+    };
 
-    this.authservice.register(payload).subscribe(
-      {
-        next(res){
-          console.log("đăng kí thành công ")
-          console.log(res.ApiResponse)
-          alert(res.ApiResponse)
+    this.authservice.register(payload).subscribe({
+      next: (res) => {
+        alert('đăng kí thành công chuyển sang Login');
+        this.router.navigate(['auth/login']);
+      },
+      error: (err) => {
+        this.isSubmitting.set(false);
+        if (err.status === 400) {
+          const errors = err.error.errors;
 
-        },
-        error:(err) =>{
+          if (errors?.FirstName) {
+            alert(errors.FirstName[0]);
+          }
+          if (errors?.LastName) {
+            alert(errors.LastName[0]);
+          }
 
-          this.isSubmitting.set(false);
-          console.log(err);
-          alert(err.message || 'đăng kí thấy bại')
-
+          if (errors?.Email) {
+            alert(errors.Email[0]);
+          }
         }
-        
-
-      }
-    )
+      },
+    });
   }
 }
-

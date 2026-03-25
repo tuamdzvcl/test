@@ -5,31 +5,31 @@ import Aura from '@primeuix/themes/aura';
 
 import { routes } from './app.routes';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-import { HTTP_INTERCEPTORS, provideHttpClient } from '@angular/common/http';
-import { MessageService } from 'primeng/api';
+import {
+  HTTP_INTERCEPTORS,
+  provideHttpClient,
+  withInterceptors,
+} from '@angular/common/http';
+import { ConfirmationService, MessageService } from 'primeng/api';
 import { AuthInterceptor } from './core/http/interceptors/AuthInterceptor';
 
 export const appConfig: ApplicationConfig = {
   providers: [
-    {
-    provide: HTTP_INTERCEPTORS,
-    useClass: AuthInterceptor,
-    multi: true
-  },
-     provideHttpClient(), // ✅
-    MessageService
-    ,provideZoneChangeDetection({ eventCoalescing: true }), provideRouter(routes), 
+    
+    provideHttpClient(withInterceptors([AuthInterceptor])), // ✅
+    MessageService,
+    provideZoneChangeDetection({ eventCoalescing: true }),
+    provideRouter(routes),
     provideAnimationsAsync(),
     providePrimeNG({
-            theme: {
-               preset: Aura,
-                options: {
-                    prefix: 'p',
-                    darkModeSelector: 'system',
-                    cssLayer: false
-                }
-            }
-        }),
-      
-      ]
+      theme: {
+        preset: Aura,
+        options: {
+          prefix: 'p',
+          darkModeSelector: 'system',
+          cssLayer: false,
+        },
+      },
+    }),
+  ],
 };

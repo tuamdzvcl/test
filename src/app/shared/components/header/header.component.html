@@ -14,7 +14,13 @@
   </nav>
 
   <div class="actions">
-    <button class="create-btn" routerLink="/create-event">Create Event</button>
+    <button 
+      *ngIf="canCreateEvent()" 
+      class="create-btn" 
+      routerLink="/event-create-page"
+    >
+      Create Event
+    </button>
 
     <app-user-dropdown></app-user-dropdown>
   </div>
