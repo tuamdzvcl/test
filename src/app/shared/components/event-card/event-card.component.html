@@ -14,7 +14,9 @@
       {{ eventmodel.Title }}
     </h3>
 
-    <div class="price">AUD $100.00*</div>
+    <div class="price">
+      {{ firstPrice() | vndCurrency }}
+    </div>
   </div>
 
   <!-- FOOTER -->

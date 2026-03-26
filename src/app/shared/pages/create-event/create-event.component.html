@@ -12,7 +12,12 @@
       sách.
     </small>
 
-    <input pInputText class="w-full" placeholder="Nhập tên sự kiện tại đây" />
+    <input
+      pInputText
+      class="w-full"
+      placeholder="Nhập tên sự kiện tại đây"
+      [(ngModel)]="value"
+    />
   </div>
 
   <!-- Category -->
@@ -24,8 +29,11 @@
 
     <p-dropdown
       [options]="categories"
+      optionLabel="Name"
+      optionValue="CatetoryId"
       placeholder="Chọn danh mục"
       class="w-full"
+      [(ngModel)]="selectedCategory"
     ></p-dropdown>
   </div>
 
@@ -37,21 +45,30 @@
     <div class="grid">
       <div class="col-6">
         <label>Ngày diễn ra</label>
-        <p-calendar placeholder="MM/DD/YYYY" styleClass="w-full"></p-calendar>
+        <p-datepicker
+          placeholder="MM/DD/YYYY"
+          styleClass="w-full"
+          [(ngModel)]="eventDate"
+        ></p-datepicker>
       </div>
 
       <div class="col-3">
         <label>Thời gian</label>
-        <p-calendar timeOnly="true" styleClass="w-full"></p-calendar>
+        <p-datepicker
+          timeOnly="true"
+          styleClass="w-full"
+          [(ngModel)]="eventTime"
+        ></p-datepicker>
       </div>
 
       <div class="col-3">
         <label>Khoảng thời gian</label>
-        <p-dropdown
+        <p-select
           [options]="durations"
           styleClass="w-full"
-          placeholder="1 giờ"
-        ></p-dropdown>
+          placeholder="{{ duration }}"
+          [(ngModel)]="duration"
+        ></p-select>
       </div>
     </div>
   </div>
@@ -88,7 +105,12 @@
     </div>
     <div class="field m-2">
       <label class="desc">Nhập địa điểm tổ chức sự kiện</label>
-      <input pInputText class="w-full" placeholder="Nhập địa điểm tại đây" />
+      <input
+        pInputText
+        class="w-full"
+        placeholder="Nhập địa điểm tại đây"
+        [(ngModel)]="location"
+      />
     </div>
   </div>
 </div>

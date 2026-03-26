@@ -55,6 +55,26 @@ export const routes: Routes = [
           },
         ],
       },
+      {
+        path: 'event-create-page/:id',
+        component: EventCreatePageComponent,
+        canActivate: [authGuard],
+        data: { requiresAuth: true },
+        children: [
+          {
+            path: '',
+            component: CreateEventComponent,
+          },
+          {
+            path: 'create-type',
+            component: EventCreateTypeComponent,
+          },
+          {
+            path: 'create-setting',
+            component: EventCreateSettingComponent,
+          },
+        ],
+      },
     ],
   },
   {
