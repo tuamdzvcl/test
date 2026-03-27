@@ -82,17 +82,29 @@
     </small>
 
     <div class="banner">
+      <img
+        *ngIf="imagePreviewUrl"
+        [src]="imagePreviewUrl | imageUrl"
+        alt="Banner sự kiện"
+        class="banner-preview"
+      />
+
+      <div *ngIf="!imagePreviewUrl" class="banner-placeholder">
+        Chưa có ảnh banner
+      </div>
+
       <p-toast />
-      <div class="flex flex-wrap gap-6 items-center justify-between">
+      <div class="upload-box">
         <p-fileupload
           #fu
           mode="basic"
-          chooseLabel="Choose"
+          chooseLabel="Chọn ảnh"
           chooseIcon="pi pi-upload"
           name="demo[]"
           url="https://www.primefaces.org/cdn/api/upload.php"
           accept="image/*"
           maxFileSize="1000000"
+          (onSelect)="onSelectImage($event)"
           (onUpload)="onUpload($event)"
         />
       </div>

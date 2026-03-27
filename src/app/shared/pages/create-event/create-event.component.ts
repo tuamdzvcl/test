@@ -8,7 +8,11 @@ import { CalendarModule } from 'primeng/calendar';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { FormsModule } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
-import { FileUploadEvent, FileUploadModule } from 'primeng/fileupload';
+import {
+  FileSelectEvent,
+  FileUploadEvent,
+  FileUploadModule,
+} from 'primeng/fileupload';
 import { Router, NavigationStart, ActivatedRoute } from '@angular/router';
 
 import { ToastModule } from 'primeng/toast';
@@ -19,6 +23,7 @@ import { DatePicker, DatePickerModule } from 'primeng/datepicker';
 import { Select, SelectModule } from 'primeng/select';
 import { CatetoryService } from '../../../core/services/catetory.service';
 import { EventService } from '../../../core/services/event.service';
+import { ImageUrlPipe } from '../../pipes/image-url.pipe';
 
 interface UploadEvent {
   originalEvent: Event;
@@ -42,6 +47,7 @@ interface UploadEvent {
     EditorModule,
     DatePickerModule,
     SelectModule,
+    ImageUrlPipe,
   ],
   templateUrl: './create-event.component.html',
   styleUrl: './create-event.component.scss',
@@ -58,6 +64,8 @@ export class CreateEventComponent {
   eventDate: Date | undefined;
   eventTime: Date | undefined;
   duration: number = 1;
+  imagePreviewUrl: string | null = null;
+  selectedImageFile: File | null = null;
 
   durations = [
     { label: '1 giờ', value: 1 },
@@ -74,17 +82,36 @@ export class CreateEventComponent {
 
   ngOnInit() {
     this.eventId = this.router.snapshot.paramMap.get('id');
+    this.isEdit = !!this.eventId;
 
-    if (this.eventId) {
-      this.loadEventData();
-    }
+    this.loadCategories(() => {
+      if (this.eventId) {
+        this.loadEventData();
+      }
+    });
+  }
+
+  private loadCategories(callback?: () => void) {
+    this.categoryService.GetCatetory().subscribe({
+      next: (res: any) => {
+        this.categories = res.Data || [];
+
+        if (callback) {
+          callback();
+        }
+      },
+      error: (err: any) => {
+        console.error('Failed to load categories:', err);
+        this.categories = [];
+      },
+    });
   }
 
   private loadEventData() {
     if (!this.eventId) return;
+
     this.eventService.GetEventId(this.eventId).subscribe({
       next: (eventData: any) => {
-        console.log('Event data loaded:', eventData);
         this.eventData = eventData;
         this.populateForm();
       },
@@ -98,22 +125,9 @@ export class CreateEventComponent {
       },
     });
   }
-  private loadCategories() {
-    this.categoryService.GetCatetory().subscribe({
-      next: (res: any) => {
-        this.categories = res.Data || [];
-      },
-      error: (err: any) => {
-        console.error('Failed to load categories:', err);
-        this.categories = [];
-      },
-    });
-  }
 
   private populateForm() {
     if (!this.eventData) return;
-
-    console.log('Populating form with data:', this.eventData);
 
     this.value = this.eventData.Title || '';
     this.text = this.eventData.Description || '';
@@ -123,13 +137,18 @@ export class CreateEventComponent {
       this.eventData.StartDate,
       this.eventData.EndDate
     );
-    console.log('duration', this.duration);
+    this.location = this.eventData.Location || '';
+
     const matchedCategory = this.categories.find(
       (c) => c.Name === this.eventData.CatetoryName
     );
 
     this.selectedCategory = matchedCategory ? matchedCategory.CatetoryId : null;
-    this.location = this.eventData.Location || '';
+    this.imagePreviewUrl = this.resolveImageUrl(this.eventData);
+  }
+
+  private resolveImageUrl(data: any): string | null {
+    return data?.PosterUrl || null;
   }
 
   private calculateDuration(startDate: string, endDate: string): number {
@@ -146,80 +165,14 @@ export class CreateEventComponent {
       detail: 'File đã được upload',
     });
   }
+  onSelectImage(event: any) {
+    const file = event.files?.[0];
+    if (!file) return;
 
-  saveEvent() {
-    // Validate required fields
-    if (
-      !this.value ||
-      !this.selectedCategory ||
-      !this.eventDate ||
-      !this.location
-    ) {
-      this.messageService.add({
-        severity: 'warn',
-        summary: 'Cảnh báo',
-        detail: 'Vui lòng điền đầy đủ thông tin bắt buộc (*)',
-      });
-      return;
-    }
-
-    const startDate = new Date(this.eventDate!);
-    if (this.eventTime) {
-      const time = new Date(this.eventTime);
-      startDate.setHours(time.getHours());
-      startDate.setMinutes(time.getMinutes());
-    }
-
-    const endDate = new Date(startDate);
-    endDate.setHours(endDate.getHours() + this.duration);
-
-    const eventData = {
-      Title: this.value,
-      Description: this.text || '',
-      CategoryId: this.selectedCategory,
-      StartDate: startDate.toISOString(),
-      EndDate: endDate.toISOString(),
-      Location: this.location,
+    const reader = new FileReader();
+    reader.onload = () => {
+      this.imagePreviewUrl = reader.result as string;
     };
-
-    if (this.isEdit) {
-      // Update existing event
-      console.log('Updating event:', { ...eventData, Id: this.eventId });
-      this.messageService.add({
-        severity: 'info',
-        summary: 'Đang cập nhật',
-        detail: 'Sự kiện đang được cập nhật...',
-      });
-    } else {
-      // Create new event
-      console.log('Creating new event:', eventData);
-      this.messageService.add({
-        severity: 'info',
-        summary: 'Đang tạo',
-        detail: 'Sự kiện mới đang được tạo...',
-      });
-    }
-  }
-
-  cancel() {
-    if (this.isEdit) {
-      // Navigate back to events list
-      this.routerNavigate.navigate(['/events']);
-    } else {
-      // Clear form
-      this.value = '';
-      this.text = '';
-      this.selectedCategory = null;
-      this.eventDate = undefined;
-      this.eventTime = undefined;
-      this.duration = 1;
-      this.location = '';
-
-      this.messageService.add({
-        severity: 'info',
-        summary: 'Đã xóa',
-        detail: 'Đã xóa dữ liệu form',
-      });
-    }
+    reader.readAsDataURL(file);
   }
 }
