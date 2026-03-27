@@ -20,32 +20,32 @@
 
     <section class="summary">
       <div class="summary__row">
-        <div class="summary__date">1st April, 2022 - 30th April, 2022</div>
+        <div class="summary__date">01/04/2026 - 30/04/2026</div>
       </div>
 
       <div class="summary__cards">
         <article class="stat stat--purple">
-          <div class="stat__label">REVENUE (AUD)</div>
-          <div class="stat__value">$550.00</div>
-          <div class="stat__meta">0.00% From Previous Period</div>
+          <div class="stat__label">DOANH THU (VNĐ)</div>
+          <div class="stat__value">15.500.000đ</div>
+          <div class="stat__meta">0.00% So với kỳ trước</div>
         </article>
 
         <article class="stat stat--red">
-          <div class="stat__label">ORDERS</div>
-          <div class="stat__value">2</div>
-          <div class="stat__meta">0.00% From Previous Period</div>
+          <div class="stat__label">ĐƠN HÀNG</div>
+          <div class="stat__value">25</div>
+          <div class="stat__meta">0.00% So với kỳ trước</div>
         </article>
 
         <article class="stat stat--blue">
-          <div class="stat__label">PAGE VIEWS</div>
-          <div class="stat__value">30</div>
-          <div class="stat__meta">0.00% From Previous Period</div>
+          <div class="stat__label">LƯỢT XEM TRANG</div>
+          <div class="stat__value">3.200</div>
+          <div class="stat__meta">0.00% So với kỳ trước</div>
         </article>
 
         <article class="stat stat--green">
-          <div class="stat__label">TICKET SALES</div>
-          <div class="stat__value">3</div>
-          <div class="stat__meta">0.00% From Previous Period</div>
+          <div class="stat__label">VÉ ĐÃ BÁN</div>
+          <div class="stat__value">45</div>
+          <div class="stat__meta">0.00% So với kỳ trước</div>
         </article>
       </div>
     </section>
@@ -54,25 +54,19 @@
       <header class="chart__header">
         <select class="chart__title">
           <option value="Revenue">Revenue</option>
-          <option value="Revenue">Revenue</option>
-          <option value="Revenue">Revenue</option>
-          <option value="Revenue">Revenue</option>
-          <option value="Revenue">Revenue</option>
         </select>
         <div class="chart__tabs">
-          <button class="chip chip--active" type="button">Monthly</button>
-          <button class="chip" type="button">Weekly</button>
-          <button class="chip" type="button">Daily</button>
+          <button class="chip" [class.chip--active]="selectedTab === 'Monthly'" type="button"
+            (click)="fetchRevenueStats('Monthly')">Monthly</button>
+          <button class="chip" [class.chip--active]="selectedTab === 'Weekly'"
+            [class.chip--active]="selectedTab === 'Weekly'" type="button"
+            (click)="fetchRevenueStats('Weekly')">Weekly</button>
+          <button class="chip" [class.chip--active]="selectedTab === 'Daily'" type="button"
+            (click)="fetchRevenueStats('Daily')">Daily</button>
         </div>
       </header>
       <div class="chart__body">
-        <div class="chart__placeholder">
-          <div class="chart__line"></div>
-          <div class="chart__dot chart__dot--1"></div>
-          <div class="chart__dot chart__dot--2"></div>
-          <div class="chart__dot chart__dot--3"></div>
-          <div class="chart__dot chart__dot--4"></div>
-        </div>
+        <p-chart type="line" [data]="chartData" [options]="chartOptions" height="250px" />
       </div>
     </section>
   </main>

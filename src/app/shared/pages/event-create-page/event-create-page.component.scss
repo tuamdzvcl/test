@@ -78,7 +78,7 @@
 }
 
 .wrapper {
-    max-width: 75rem; // 800px
+    max-width: 75rem; 
     margin: 0 auto;
     position: relative;
 }
@@ -89,12 +89,30 @@
     align-items: center;
     margin: 20px 0;
     padding: 10px;
+    gap: 15px; 
 }
 
 .btn-save button {
     padding: 12px 50px;
-    background-color: rgb(31, 171, 31);
+    background-color: #2dbd26;
     border: 0;
     color: #fff;
-    border-radius: 2px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background-color 0.2s;
+}
+
+.btn-save button:hover {
+    background-color: #25a01e;
+}
+
+.btn-save .btn-back {
+    background-color: #f1f5f9;
+    color: #475569;
+    border: 1px solid #e2e8f0;
+}
+
+.btn-save .btn-back:hover {
+    background-color: #e2e8f0;
 }

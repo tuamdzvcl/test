@@ -16,8 +16,26 @@
       </div>
     </div>
   </div>
-  <router-outlet></router-outlet>
+  <!-- Chỉ hiện content khi dữ liệu đã sẵn sàng trong DraftService -->
+  <ng-container *ngIf="isDataLoaded; else loading">
+    <router-outlet></router-outlet>
+  </ng-container>
+
+  <ng-template #loading>
+    <div class="flex justify-content-center align-items-center py-8">
+      <i class="pi pi-spin pi-spinner text-4xl text-primary"></i>
+    </div>
+  </ng-template>
 </div>
-<div class="btn-save">
-  <button (click)="onNextStep()">Tiếp</button>
+<div class="btn-save flex gap-3">
+  <!-- Nút Quay lại: Chỉ hiện nếu không phải bước đầu tiên -->
+  <button *ngIf="activeIndex > 0" class="btn-back" (click)="onBackStep()">Quay lại</button>
+
+  <!-- Nút Tiếp tục / Lưu: Chữ trên nút thay đổi theo vị trí bước -->
+  <button (click)="onNextStep()">
+    <ng-container *ngIf="activeIndex < 2">Tiếp tục</ng-container>
+    <ng-container *ngIf="activeIndex === 2">
+      {{ eventId ? 'Cập nhật sự kiện' : 'Lưu sự kiện' }}
+    </ng-container>
+  </button>
 </div>

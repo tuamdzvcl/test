@@ -137,48 +137,8 @@
   margin-top: 10px;
 }
 
-.chart__placeholder {
-  height: 220px;
-  border-radius: 8px;
-  background: linear-gradient(to bottom, #e0f2fe, #f9fafb);
-  position: relative;
-  overflow: hidden;
-}
-
-.chart__line {
-  position: absolute;
-  inset: auto 8px 30px;
-  height: 2px;
-  background: rgba(148, 163, 184, 0.6);
-}
-
-.chart__dot {
-  position: absolute;
-  bottom: 30px;
-  width: 9px;
-  height: 9px;
-  border-radius: 999px;
-  background: #22c55e;
-}
-
-.chart__dot--1 {
-  left: 10%;
-  bottom: 60px;
-}
-
-.chart__dot--2 {
-  left: 35%;
-  bottom: 130px;
-}
-
-.chart__dot--3 {
-  left: 65%;
-  bottom: 80px;
-}
-
-.chart__dot--4 {
-  left: 88%;
-  bottom: 160px;
+.chart__body {
+  margin-top: 10px;
 }
 
 @media (max-width: 1024px) {

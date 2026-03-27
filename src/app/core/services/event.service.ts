@@ -36,7 +36,7 @@ export class EventService extends BaseApiService {
     );
   }
 
-  CreateEvent(data: EventRequest) {
+  CreateEvent(data: FormData) {
     return this.post<ApiResponse<EventModel>>('event', data);
   }
 
