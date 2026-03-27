@@ -58,6 +58,8 @@
     </small>
 
     <div class="banner">
+
+
       <p-toast />
       <!-- Image preview area -->
       <div class="image-upload-area" (click)="triggerFileInput()">
@@ -69,8 +71,10 @@
       </div>
       <input #fileInput type="file" accept="image/*" style="display:none" (change)="onFileSelect($event)" />
       <div style="margin-top: 8px;">
-        <button pButton type="button" icon="pi pi-upload" label="Chọn ảnh" class="p-button-outlined" (click)="triggerFileInput()"></button>
-        <span *ngIf="selectedFile" style="margin-left: 12px; color: #555; font-size: 0.875rem;">{{ selectedFile.name }}</span>
+        <button pButton type="button" icon="pi pi-upload" label="Chọn ảnh" class="p-button-outlined"
+          (click)="triggerFileInput()"></button>
+        <span *ngIf="selectedFile" style="margin-left: 12px; color: #555; font-size: 0.875rem;">{{ selectedFile.name
+          }}</span>
       </div>
     </div>
 

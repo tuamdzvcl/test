@@ -5,18 +5,13 @@
   <!-- Steps -->
   <div class="speet">
     <div class="custom-steps">
-      <div 
-        *ngFor="let step of steps; let i = index" 
-        class="step-item"
-        [class.active]="i === activeIndex"
-        (click)="onStepClick(i)"
-      >
+      <div *ngFor="let step of steps; let i = index" class="step-item" [class.active]="i === activeIndex"
+        (click)="onStepClick(i)">
         <div class="step-number">{{ i + 1 }}</div>
         <div class="step-label">{{ step.label }}</div>
       </div>
     </div>
   </div>
-  <!-- Chỉ hiện content khi dữ liệu đã sẵn sàng trong DraftService -->
   <ng-container *ngIf="isDataLoaded; else loading">
     <router-outlet></router-outlet>
   </ng-container>
@@ -28,10 +23,8 @@
   </ng-template>
 </div>
 <div class="btn-save flex gap-3">
-  <!-- Nút Quay lại: Chỉ hiện nếu không phải bước đầu tiên -->
   <button *ngIf="activeIndex > 0" class="btn-back" (click)="onBackStep()">Quay lại</button>
 
-  <!-- Nút Tiếp tục / Lưu: Chữ trên nút thay đổi theo vị trí bước -->
   <button (click)="onNextStep()">
     <ng-container *ngIf="activeIndex < 2">Tiếp tục</ng-container>
     <ng-container *ngIf="activeIndex === 2">
